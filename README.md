@@ -229,6 +229,59 @@ Please follow these steps:
 3. Open a pull request on GitHub. A description and/or screenshot of changes would be appreciated!
 4. I ([Ben Centra](https://github.com/bencentra)) will review and merge the pull request.
 
+## Add Mathjax to centrarium
+
+1. _includes/mathjax.html을 만들어서 아래 내용 삽입
+```html
+<script type="text/javascript">
+window.MathJax = {
+  tex: {
+    packages: ['base', 'ams']
+  },
+  loader: {
+    load: ['ui/menu', '[tex]/ams']
+  },
+  startup: {
+    ready() {
+      MathJax.startup.defaultReady();
+      const Macro = MathJax._.input.tex.Symbol.Macro;
+      const MapHandler = MathJax._.input.tex.MapHandler.MapHandler;
+      const Array = MathJax._.input.tex.ams.AmsMethods.default.Array;
+      const env = new Macro('psmallmatrix', Array, [null, '(', ')', 'c', '.333em', '.2em', 'S', 1]);
+      MapHandler.getMap('AMSmath-environment').add('psmallmatrix', env);
+    }
+  }
+};
+</script>
+<script type="text/javascript" id="MathJax-script" async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+</script>
+```
+
+2. _layouts/default.html 맨 밑에 아래 내용을 삽입
+
+```html
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+
+    {% include header.html %}
+
+    <div class="page-content">
+        {{ content }}
+    </div>
+
+    {% include footer.html %}
+    {% include mathjax.html %}      ####이것을 삽입
+
+  </body>
+
+</html>
+```
+
 ## License
 
 MIT. See [LICENSE.MD](https://github.com/bencentra/centrarium/blob/master/LICENSE.md).
