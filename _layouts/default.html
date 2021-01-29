@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html>
+  <haed>
+    {% if page.use_math %}
+      {% include mathjax_support.html %}
+    {% endif %}
+  </haed>
 
   {% include head.html %}
 
