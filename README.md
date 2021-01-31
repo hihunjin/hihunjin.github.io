@@ -233,28 +233,27 @@ Please follow these steps:
 
 1. _includes/mathjax.html을 만들어서 아래 내용 삽입
 ```html
-<script type="text/javascript">
-window.MathJax = {
-  tex: {
-    packages: ['base', 'ams']
-  },
-  loader: {
-    load: ['ui/menu', '[tex]/ams']
-  },
-  startup: {
-    ready() {
-      MathJax.startup.defaultReady();
-      const Macro = MathJax._.input.tex.Symbol.Macro;
-      const MapHandler = MathJax._.input.tex.MapHandler.MapHandler;
-      const Array = MathJax._.input.tex.ams.AmsMethods.default.Array;
-      const env = new Macro('psmallmatrix', Array, [null, '(', ')', 'c', '.333em', '.2em', 'S', 1]);
-      MapHandler.getMap('AMSmath-environment').add('psmallmatrix', env);
-    }
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    processEscapes: true,
   }
-};
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
 </script>
-<script type="text/javascript" id="MathJax-script" async
-  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 ```
 
@@ -275,12 +274,29 @@ window.MathJax = {
     </div>
 
     {% include footer.html %}
-    {% include mathjax.html %}      ####이것을 삽입
+    <!-- 아래를 삽입 -->
+    {% if page.use_math %}
+      {% include mathjax_support.html %}
+    {% endif %}
 
   </body>
 
 </html>
 ```
+
+2. page마다 ``use_math: true``를 써야 함. 사용 예시:
+```markdown
+---
+...
+use_math: true
+---
+$$
+\sum_{i=1}^N i
+$$
+
+This is an example
+```
+이렇게 $$ 아래에 한칸 띄기.
 
 ## License
 
