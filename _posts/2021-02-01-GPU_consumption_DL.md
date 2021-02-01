@@ -64,3 +64,8 @@ and so on과 같은 값을 Output에 만들어주고 계산함. 마치 [Table3](
 * 아래 그림은 논문(Microsoft)에서 제시하는 새로운 Deep Learning API(architecture)인 DNNMem에 대한 구조이다. memory적으로 매우 효율적이다. 줄인 방법은 자세히 보지 않았다. 논문 참조.
 
 ![DNNMem](/assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%202.03.07%20PM.png)
+
+---
+### 의문점
+
+* 그래서 DNNMem은 어떻게 memory를 줄였지?????
