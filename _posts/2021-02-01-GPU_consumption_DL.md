@@ -6,12 +6,14 @@ author: Heonjin Ha
 categories: deep_learning
 use_math: true
 ---
+## 이 논문은 OOM(Out Of Memory)가 많이 나는 DL Models의 문제들 때문에 연구되었다.
+
 * 아래 그림은 논문에서 사용한 Pytorch로 작성된 간단한 코드구조이다.
 
-![code](../assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%201.49.25%20PM.png)
+![code](/assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%201.49.25%20PM.png)
 * 아래 그림은 위의 코드에 대한 것의 memory 사용을 보여준다. $E$, $O$, $W$에 대한 설명은 아래 [table 3]()을 보자.
 
-![architecture](../assets/GPU_consumption_DL/1.png)
+![architecture](/assets/GPU_consumption_DL/1.png)
 * 아래 그림은 연산이 진행됨에 따라 쓸모 없는 memory($E^1$)은 버려지는 것을 알수 있다.
 
 ![Figure4](../assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%201.50.03%20PM.png)
@@ -27,10 +29,14 @@ use_math: true
   * cuDNN Workspace
     * conv 연산을 할때,cuDNN은 특수한 알고리즘으로 구성되어 있음. 그때 여분의 memory가 필요함. 그 때 사용함.(memory를 쓰는 대신, 속도를 빠르게 가져갔다.)
   * Temporary Tensor는 예를들어 padding이 있다.
-* Resident Buffer - 모르겠음
+* Resident Buffer - 4.5장
   * CUDA Context
+    * managing information to control + use GPU devices????
+    * GPU SKU(Stock Keeping Unit), deep learning framework 딱 이 두가지에 의해 결정됨. 모델이 바껴도 변하지 않음.
   * Internal Tensor Fragmentation
+    * tensor의 element간에 alignment를 맞추는(순서관계를 가지고 있는?) 여분의 memory
   * Allocator Reservation
+    * released yet unreclaimed tensors / pre-allocated memory / external tensor fragmentation이 있다고 하는데 잘 모르겠다.
 
 ![Table2](../assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%202.01.08%20PM.png)
 * 아래 그림은 맨 위 코드에 해당하는 것의 memory사용이다.
