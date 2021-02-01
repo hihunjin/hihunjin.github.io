@@ -16,7 +16,7 @@ use_math: true
 ![architecture](/assets/GPU_consumption_DL/1.png)
 * 아래 그림은 연산이 진행됨에 따라 쓸모 없는 memory($E^1$)은 버려지는 것을 알수 있다.
 
-![Figure4](../assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%201.50.03%20PM.png)
+![Figure4](/assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%201.50.03%20PM.png)
 * 아래 그림은 Deep Learning model을 만들기 위해 꼭 필요한 memory들이다.
 * Weight Tensor
   * Category의 이름이 그대로 설명해주고 있다.
@@ -38,11 +38,11 @@ use_math: true
   * Allocator Reservation
     * released yet unreclaimed tensors / pre-allocated memory / external tensor fragmentation이 있다고 하는데 잘 모르겠다.
 
-![Table2](../assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%202.01.08%20PM.png)
+![Table2](/assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%202.01.08%20PM.png)
 * 아래 그림은 맨 위 코드에 해당하는 것의 memory사용이다.
 * $S_f$는 data type. float32, int, double 등.
 
-![Table3](../assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%202.01.26%20PM.png)
+![Table3](/assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%202.01.26%20PM.png)
 * 아래 그림은 tf, pytorch, mxnet의 memory사용비율을 나타냄.
 * mxnet>tf>pytorch순으로 좋음.
 >
@@ -50,14 +50,17 @@ $$
 \% \text{error}=\frac{|\text{Est.}-\text{Real}|}{\text{Real}} \times 100
 $$
 
-* SI(Shape inference)가 뭔지는 아직 모름.
+* SI(Shape inference) - 자세한건 다른 논문 보라고 되어있음.
+  * 중간에 계산된 Shape만 가지고 memory량을 측정
+  * batch size, input tensor shape, the filter number,
+and so on과 같은 값을 Output에 만들어주고 계산함. 마치 [Table3]()계산하듯이...
 
-![Table7](../assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%202.03.25%20PM.png)
+![Table7](/assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%202.03.25%20PM.png)
 * 배치 사이즈마다 다른 memory consumption
 
-![Table9](../assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%202.06.41%20PM.png)
+![Table9](/assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%202.06.41%20PM.png)
 
 ---
 * 아래 그림은 논문(Microsoft)에서 제시하는 새로운 Deep Learning API(architecture)인 DNNMem에 대한 구조이다. memory적으로 매우 효율적이다. 줄인 방법은 자세히 보지 않았다. 논문 참조.
 
-![DNNMem](../assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%202.03.07%20PM.png)
+![DNNMem](/assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%202.03.07%20PM.png)
