@@ -45,7 +45,7 @@ use_math: true
 ![Table3](/assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%202.01.26%20PM.png)
 * 아래 그림은 tf, pytorch, mxnet의 memory사용비율을 나타냄.
 * mxnet>tf>pytorch순으로 좋음.
->
+
 $$
 \% \text{error}=\frac{|\text{Est.}-\text{Real}|}{\text{Real}} \times 100
 $$
