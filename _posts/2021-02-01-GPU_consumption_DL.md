@@ -11,7 +11,7 @@ use_math: true
 ![code](../assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%201.49.25%20PM.png)
 * 아래 그림은 위의 코드에 대한 것의 memory 사용을 보여준다. $E$, $O$, $W$에 대한 설명은 아래 [table 3]()을 보자.
 
-![architecture](../assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%201.46.01%20PM.png)
+![architecture](../assets/GPU_consumption_DL/1.png)
 * 아래 그림은 연산이 진행됨에 따라 쓸모 없는 memory($E^1$)은 버려지는 것을 알수 있다.
 
 ![Figure4](../assets/GPU_consumption_DL/Screen%20Shot%202021-02-01%20at%201.50.03%20PM.png)
